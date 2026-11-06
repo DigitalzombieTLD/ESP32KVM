@@ -14,6 +14,7 @@ static const char *HELP_TEXT =
     "Keyboard (USB HID to the host):\n"
     "  type <text>            type text (no Enter)\n"
     "  typeln <text>          type text followed by Enter\n"
+    "  typepwd                prompt (hidden) for a password, type it + Enter\n"
     "  key <combo> [count]    press a key/combo, e.g. key ctrl+alt+del, key shift+f10, key a\n"
     "  enter esc backspace tab space delete insert home end pgup pgdn\n"
     "  up down left right     single keys (optional repeat count, e.g. 'down 3')\n"
@@ -328,6 +329,12 @@ ShellResult shellExecute(Term &t, const String &lineIn) {
     if (cmd == "type" && text.length() == 0) { t.print("usage: type <text>\n"); return SHELL_CONTINUE; }
     kbdWarn(t);
     kbdType(text.c_str(), cmd == "typeln");
+  } else if (cmd == "typepwd") {
+    String pw;
+    if (!readSecret(t, "Password to type (hidden): ", pw)) return SHELL_CONTINUE;
+    kbdWarn(t);
+    kbdType(pw.c_str(), true);
+    pw = "";
   } else if (cmd == "key") {
     long count = 1;
     if (n < 2 || (n == 3 && !parseInt(tok[2], count, 1, 100)) || n > 3) {

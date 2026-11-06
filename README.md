@@ -97,6 +97,7 @@ and a `kvm>` prompt (line editing, history with up/down, Ctrl-C clears the line,
 |---------|-------------|
 | `type <text>` | type text exactly as given (spaces preserved), **no** Enter |
 | `typeln <text>` | type text followed by Enter |
+| `typepwd` | prompt for a password without echo (never in command line/history), type it, then press Enter |
 | `key <combo> [count]` | press a key or combination: `key ctrl+alt+del`, `key alt+f4`, `key win+r`, `key shift+tab`, `key a` |
 | `enter` `esc` `backspace` `tab` `space` `delete` `insert` `home` `end` `pgup` `pgdn` | single keys |
 | `up` `down` `left` `right` | arrow keys |
