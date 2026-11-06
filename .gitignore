@@ -1,0 +1,8 @@
+.pio/
+.vscode/
+.idea/
+*.bak
+*.log
+
+# Real credentials - copy include/config.example.h to include/config.h
+include/config.h
